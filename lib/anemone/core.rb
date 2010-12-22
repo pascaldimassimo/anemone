@@ -9,7 +9,7 @@ require 'anemone/storage/base'
 
 module Anemone
 
-  VERSION = '0.5.0';
+  VERSION = '0.5.1';
 
   #
   # Convenience method to start a crawl
@@ -287,7 +287,8 @@ module Anemone
     # its URL matches a skip_link pattern.
     #
     def skip_link?(link)
-      @skip_link_patterns.any? { |pattern| link.path =~ pattern }
+      # Match the whole link against the pattern
+      @skip_link_patterns.any? { |pattern| link.to_s =~ pattern }
     end
 
   end
